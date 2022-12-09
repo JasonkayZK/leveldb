@@ -349,17 +349,6 @@ TEST(LevelDBDemo, Filter) {
 TEST(LevelDBDemo, GetApproximateSizes) {
   leveldb::DB* db = init_db(get_options());
 
-  for (int i = 0; i < 50; ++i) {
-    db->Put(leveldb::WriteOptions{}, "a-" +std::to_string(i), "a-value");
-    db->Put(leveldb::WriteOptions{}, "b-" + std::to_string(i), "b-value");
-    db->Put(leveldb::WriteOptions{}, "c-" + std::to_string(i), "c-value");
-  }
-  for (int i = 0; i < 30; ++i) {
-    db->Put(leveldb::WriteOptions{}, "x-" + std::to_string(i), "x-value");
-    db->Put(leveldb::WriteOptions{}, "y-" + std::to_string(i), "y-value");
-    db->Put(leveldb::WriteOptions{}, "z-" + std::to_string(i), "z-value");
-  }
-
   // GetApproximateSizes
   leveldb::Range ranges[2];
   ranges[0] = leveldb::Range("a", "c");
